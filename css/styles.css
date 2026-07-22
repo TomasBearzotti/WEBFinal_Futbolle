@@ -26,7 +26,7 @@ body {
     color 0.25s ease;
 }
 
-/* ---------- Theme tokens ---------- */
+/* ---------- Tema ---------- */
 
 body.theme-light {
   --bg-body: linear-gradient(180deg, #eef1f6 0%, #dde4ee 100%);
@@ -149,7 +149,7 @@ a {
   gap: 12px;
 }
 
-/* ---------- Topbar (scorebug) ---------- */
+/* ---------- Topbar ---------- */
 
 .topbar {
   justify-content: space-between;
@@ -238,7 +238,7 @@ body.theme-light .subtitle {
   flex: 1 1 360px;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Botones ---------- */
 
 .button {
   display: inline-flex;
@@ -314,7 +314,7 @@ body.theme-light .button-secondary {
   border-radius: 50%;
 }
 
-/* ---------- Views ---------- */
+/* ---------- Vistas ---------- */
 
 .view-section {
   display: flex;
@@ -322,7 +322,7 @@ body.theme-light .button-secondary {
   gap: 22px;
 }
 
-/* ---------- Scoreboard stat tiles ---------- */
+/* ---------- Marcador Estadisticas ---------- */
 
 .summary-grid {
   justify-content: space-between;
@@ -382,7 +382,7 @@ body.theme-light .button-secondary {
   letter-spacing: -0.01em;
 }
 
-/* ---------- Game layout ---------- */
+/* ---------- Layout del Juego ---------- */
 
 .game-layout {
   align-items: flex-start;
@@ -417,7 +417,7 @@ body.theme-light .button-secondary {
   font-size: 1.1rem;
 }
 
-/* ---------- Forms ---------- */
+/* ---------- Formulario ---------- */
 
 .guess-form,
 .contact-form,
@@ -469,7 +469,7 @@ body.theme-light .button-secondary {
   min-width: 130px;
 }
 
-/* ---------- Attempts board ---------- */
+/* ---------- Tabla de Intentos ---------- */
 
 .board-block {
   display: flex;
@@ -640,7 +640,7 @@ body.theme-light .button-secondary {
   font-size: 0.85rem;
 }
 
-/* ---------- Secret panel ---------- */
+/* ---------- Panel Secreto ---------- */
 
 .secret-photo-box {
   align-items: center;
@@ -714,7 +714,7 @@ body.theme-dark .github-link {
   font-size: 0.9rem;
 }
 
-/* ---------- Contact ---------- */
+/* ---------- Contacto ---------- */
 
 .contact-panel {
   padding: 22px;
@@ -739,7 +739,7 @@ body.theme-dark .github-link {
   font-weight: 700;
 }
 
-/* ---------- Modals ---------- */
+/* ---------- Modales ---------- */
 
 .modal {
   position: fixed;
@@ -792,7 +792,7 @@ body.theme-dark .github-link {
   align-items: center;
 }
 
-/* ---------- Secret player reveal (win/lose modal) ---------- */
+/* ---------- Reveal de el jugador secreto ---------- */
 
 .secret-reveal {
   display: flex;
@@ -934,7 +934,7 @@ body.theme-dark .github-link {
   text-decoration: underline;
 }
 
-/* ---------- History pagination ---------- */
+/* ---------- Historial ---------- */
 
 .history-pagination {
   display: flex;
@@ -1011,8 +1011,6 @@ body.theme-dark .github-link {
     flex-direction: column;
   }
 
-  /* fix: flex-basis becomes a HEIGHT basis once the parent goes column,
-     so it must be reset explicitly or cards render tall and skinny */
   .info-card {
     flex: 1 1 auto;
     width: 100%;
