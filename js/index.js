@@ -8,6 +8,8 @@ var HISTORY_KEY = "futbolle-history";
 var THEME_KEY = "futbolle-theme";
 var DEFAULT_THEME = "light";
 var HISTORY_PAGE_SIZE = 5;
+var SOUND_WIN_URL = "sonidos/mixkit-achievement-bell-600.wav";
+var SOUND_LOSE_URL = "sonidos/mixkit-losing-bleeps-2026.wav";
 var state = {
   playerName: "",
   difficulty: "facil",
@@ -896,9 +898,11 @@ function finishGame(didWin) {
   resultLabel = didWin ? "Victoria" : "Derrota";
   storeHistoryRecord(resultLabel, secretName, didWin);
   if (didWin) {
+    playSound(SOUND_WIN_URL);
     showWinModal();
     return;
   }
+  playSound(SOUND_LOSE_URL);
   showLoseModal();
 }
 
