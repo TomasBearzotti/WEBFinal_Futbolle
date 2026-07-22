@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="description"
+      content="Futbolle: adiviná al jugador de fútbol"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230f7a4f%22/><circle cx=%2250%22 cy=%2250%22 r=%2226%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/><path d=%22M50 30 L64 40 L58 58 L42 58 L36 40 Z%22 fill=%22white%22/></svg>"
+    />
+    <title>Futbolle UAI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/index.js"></script>
+  </head>
+  <body class="theme-light">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="eyebrow">Proyecto Final Individual</p>
+          <h1>Futbolle</h1>
+          <p class="subtitle">
+            Adiviná al jugador secreto usando pistas y tu intuición.
+          </p>
+        </div>
+        <div class="topbar-actions">
+          <button
+            id="btn-game-view"
+            class="button button-secondary"
+            type="button"
+            aria-pressed="true"
+          >
+            Juego
+          </button>
+          <button
+            id="btn-contact-view"
+            class="button button-secondary"
+            type="button"
+            aria-pressed="false"
+          >
+            Contacto
+          </button>
+          <button
+            id="btn-history"
+            class="button button-secondary"
+            type="button"
+          >
+            Historial
+          </button>
+          <button id="btn-theme" class="button button-secondary" type="button">
+            Modo oscuro
+          </button>
+          <button id="btn-restart" class="button button-primary" type="button">
+            Nueva partida
+          </button>
+        </div>
+      </header>
+      <main id="game-view" class="view-section">
+        <section class="summary-grid">
+          <div class="info-card">
+            <span class="card-label">Jugador</span>
+            <strong id="human-player-label">Sin definir</strong>
+          </div>
+          <div class="info-card">
+            <span class="card-label">Dificultad</span>
+            <strong id="difficulty-label">-</strong>
+          </div>
+          <div class="info-card">
+            <span class="card-label">Intentos restantes</span>
+            <strong id="attempts-left-label">8</strong>
+          </div>
+          <div class="info-card">
+            <span class="card-label">Tiempo</span>
+            <strong id="timer-label" aria-live="off">00:00</strong>
+          </div>
+          <div class="info-card">
+            <span class="card-label">Puntaje</span>
+            <strong id="score-label" aria-live="polite">0</strong>
+          </div>
+        </section>
+        <section class="game-layout">
+          <div class="panel panel-main">
+            <form id="guess-form" class="guess-form" autocomplete="off">
+              <label for="player-search">Buscar jugador</label>
+              <div class="search-row">
+                <input
+                  id="player-search"
+                  name="player-search"
+                  type="text"
+                  placeholder="Escribí un nombre y elegí una sugerencia"
+                  list="player-suggestions"
+                  aria-autocomplete="list"
+                  disabled
+                />
+                <datalist id="player-suggestions"></datalist>
+                <button
+                  id="btn-submit-guess"
+                  class="button button-primary"
+                  type="submit"
+                  disabled
+                >
+                  Probar
+                </button>
+              </div>
+              <p class="form-help">
+                El intento debe existir en el dataset y no puede repetirse en la
+                misma partida.
+              </p>
+            </form>
+            <div class="board-block">
+              <div class="board-head" aria-hidden="true">
+                <div>Jugador</div>
+                <div>Nacionalidad</div>
+                <div>Club</div>
+                <div>Posición</div>
+                <div>Edad</div>
+                <div>Overall</div>
+                <div>Altura</div>
+              </div>
+              <div id="attempts-list" class="board-list">
+                <div class="empty-board" id="empty-board">
+                  Todavía no hay intentos. Iniciá la partida para comenzar.
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="panel panel-side">
+            <div class="secret-card">
+              <h2>Pistas</h2>
+              <div id="secret-photo-box" class="secret-photo-box secret-hidden">
+                <img id="secret-photo" alt="Jugador secreto desenfocado" />
+              </div>
+              <div id="secret-hints" class="secret-hints"></div>
+              <div id="secret-status" class="secret-status">
+                La foto y las pistas adicionales dependen de la dificultad
+                elegida.
+              </div>
+            </div>
+            <div class="secret-card">
+              <h2>Reglas rápidas</h2>
+              <ul class="rules-list">
+                <li>8 intentos máximos.</li>
+                <li>No se permiten nombres repetidos.</li>
+                <li>El timer arranca con el primer intento válido.</li>
+                <li>Reiniciá la partida sin recargar la página.</li>
+              </ul>
+            </div>
+            <div class="secret-card">
+              <h2>Repositorio</h2>
+              <a
+                id="github-link"
+                class="github-link"
+                href="https://github.com/TomasBearzotti/WEBFinal_Futbolle"
+                target="_blank"
+                rel="noreferrer"
+                >Abrir código en GitHub</a
+              >
+            </div>
+          </aside>
+        </section>
+      </main>
+      <section id="contact-view" class="view-section hidden">
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <p class="eyebrow">Contacto</p>
+            <h2>Escribinos</h2>
+            <p>
+              Usá este formulario para abrir tu cliente de correo predeterminado
+              con los datos validados desde JavaScript.
+            </p>
+          </div>
+          <form id="contact-form" class="contact-form" novalidate>
+            <label for="contact-name">Nombre</label>
+            <input id="contact-name" type="text" placeholder="Tu nombre" />
+            <label for="contact-email">Mail</label>
+            <input id="contact-email" type="email" placeholder="tu@mail.com" />
+            <label for="contact-message">Mensaje</label>
+            <textarea
+              id="contact-message"
+              rows="6"
+              placeholder="Contanos qué necesitás"
+            ></textarea>
+            <button
+              id="contact-submit"
+              class="button button-primary"
+              type="submit"
+            >
+              Enviar mail
+            </button>
+            <p id="contact-feedback" class="form-feedback"></p>
+          </form>
+        </div>
+      </section>
+    </div>
+    <footer class="app-footer">
+      <p>
+        Futbolle · Proyecto Final Individual ·
+        <a
+          href="https://github.com/TomasBearzotti/WEBFinal_Futbolle"
+          target="_blank"
+          rel="noreferrer"
+          >Código en GitHub</a
+        >
+      </p>
+    </footer>
+    <div
+      id="start-modal"
+      class="modal modal-visible"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="start-modal-title"
+    >
+      <div class="modal-card modal-card-large">
+        <p class="eyebrow">Inicio de partida</p>
+        <h2 id="start-modal-title">Ingresá tu nombre</h2>
+        <p>
+          El nombre del jugador humano debe tener al menos 3 caracteres. Después
+          elegí la dificultad y arrancamos con un jugador secreto aleatorio.
+        </p>
+        <form id="start-form" class="start-form" autocomplete="off">
+          <label for="human-name">Nombre</label>
+          <input id="human-name" type="text" placeholder="Tu nombre" />
+          <label for="difficulty-select">Dificultad</label>
+          <select id="difficulty-select">
+            <option value="facil">Fácil</option>
+            <option value="medio">Medio</option>
+            <option value="dificil">Difícil</option>
+          </select>
+          <button id="start-game" class="button button-primary" type="submit">
+            Comenzar
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      id="message-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="message-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-card" id="message-modal-card">
+        <div class="modal-header">
+          <h2 id="message-modal-title">Mensaje</h2>
+          <button
+            id="message-modal-close"
+            class="button button-secondary button-icon"
+            type="button"
+            aria-label="Cerrar modal"
+          >
+            ×
+          </button>
+        </div>
+        <div id="message-modal-body" class="modal-body"></div>
+        <div id="message-modal-actions" class="modal-actions"></div>
+      </div>
+    </div>
+  </body>
+</html>
