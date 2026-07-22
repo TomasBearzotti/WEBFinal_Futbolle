@@ -824,6 +824,16 @@ function calculateBlurValue() {
   return blurValue;
 }
 
+function revealSecretPhoto() {
+  if (!state.secretPlayer) {
+    return;
+  }
+  dom.secretPhotoBox.classList.remove("secret-hidden");
+  dom.secretPhoto.src = state.secretPlayer.photo;
+  dom.secretPhoto.alt = "Foto del jugador secreto revelada";
+  dom.secretPhoto.style.filter = "none";
+}
+
 function buildMediumHints() {
   var hints;
 
@@ -892,6 +902,7 @@ function finishGame(didWin) {
 
   state.gameFinished = true;
   stopTimer();
+  revealSecretPhoto();
   state.score = didWin ? calculateScore() : 0;
   updateScoreDisplay();
   secretName = state.secretPlayer ? state.secretPlayer.name : "Desconocido";

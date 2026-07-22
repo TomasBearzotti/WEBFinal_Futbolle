@@ -1,10 +1,3 @@
-/* ==========================================================================
-   Futbolle — "Matchday" theme
-   A premium sports-broadcast dashboard: floodlit dark mode, crisp day mode,
-   scoreboard typography for numbers, structured (not bubbly) geometry.
-   All original class names / IDs preserved — only values changed.
-   ========================================================================== */
-
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap");
 
 * {
@@ -183,13 +176,6 @@ a {
   );
 }
 
-.topbar-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  flex: 1 1 320px;
-}
-
 .brand-block {
   flex: 1 1 320px;
   display: flex;
@@ -250,64 +236,6 @@ body.theme-light .subtitle {
 .topbar-actions {
   justify-content: flex-end;
   flex: 1 1 360px;
-}
-
-/* ---------- Mobile hamburger menu ---------- */
-/* Hidden on desktop/tablet; only takes over at the 720px breakpoint below */
-
-.btn-menu-toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-.menu-icon,
-.menu-icon::before,
-.menu-icon::after {
-  display: block;
-  width: 18px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.menu-icon {
-  position: relative;
-}
-
-.menu-icon::before,
-.menu-icon::after {
-  content: "";
-  position: absolute;
-  left: 0;
-}
-
-.menu-icon::before {
-  top: -6px;
-}
-
-.menu-icon::after {
-  top: 6px;
-}
-
-.btn-menu-toggle[aria-expanded="true"] .menu-icon {
-  background: transparent;
-}
-
-.btn-menu-toggle[aria-expanded="true"] .menu-icon::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.btn-menu-toggle[aria-expanded="true"] .menu-icon::after {
-  top: 0;
-  transform: rotate(-45deg);
 }
 
 /* ---------- Buttons ---------- */
@@ -852,12 +780,100 @@ body.theme-dark .github-link {
 .modal-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+}
+
+.modal-body p {
+  margin: 0;
 }
 
 .modal-actions {
   justify-content: flex-end;
   align-items: center;
+}
+
+/* ---------- Secret player reveal (win/lose modal) ---------- */
+
+.secret-reveal {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-main);
+}
+
+.secret-reveal-info {
+  order: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.secret-reveal-photo {
+  order: 2;
+  flex: 1 1 0;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  min-width: 0;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--border-main);
+  background: var(--bg-panel-soft);
+}
+.secret-reveal-name {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.secret-reveal-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.secret-reveal-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: var(--bg-panel-soft);
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 7px 9px;
+  min-width: 0;
+}
+
+.secret-reveal-stat-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.secret-reveal-stat-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.86rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.secret-reveal-icon {
+  height: 16px;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .history-list {
@@ -1008,38 +1024,10 @@ body.theme-dark .github-link {
     align-items: stretch;
   }
 
-  .topbar-head {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .btn-menu-toggle {
-    display: inline-flex;
-  }
-
   .topbar-actions {
+    justify-content: flex-start;
     flex-direction: column;
     align-items: stretch;
-    justify-content: flex-start;
-    flex-basis: 100%;
-    order: 3;
-    max-height: 0;
-    overflow: hidden;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    transition:
-      max-height 0.25s ease,
-      opacity 0.2s ease,
-      padding 0.25s ease;
-  }
-
-  .topbar-actions.is-open {
-    max-height: 400px;
-    opacity: 1;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
 
   .topbar-actions .button {
@@ -1095,17 +1083,6 @@ body.theme-dark .github-link {
     justify-content: flex-start;
   }
 
-  .cell[data-label]::before {
-    content: attr(data-label) ": ";
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    color: var(--text-soft);
-    margin-right: 4px;
-  }
-
   .secret-photo-box {
     min-height: 190px;
   }
@@ -1116,6 +1093,15 @@ body.theme-dark .github-link {
 
   .modal-card {
     padding: 18px;
+  }
+
+  .secret-reveal {
+    flex-direction: column;
+  }
+
+  .secret-reveal-photo {
+    order: -1;
+    max-height: 220px;
   }
 }
 
